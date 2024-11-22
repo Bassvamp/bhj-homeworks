@@ -12,12 +12,12 @@ for(let i = 1; i < 10; i++) {
     hole.onclick = () => {
         hole.classList.contains("hole_has-mole") ? dead.textContent++ : lost.textContent++;
 
-        if(dead.textContent === 10) {
+        if(Number(dead.textContent) === 10) {
             alert("Вы победили!");
             newGame();
         }
 
-        if(lost.textContent === 5) {
+        if(Number(lost.textContent) === 5) {
             alert("Вы проиграли.");
             newGame();
         }

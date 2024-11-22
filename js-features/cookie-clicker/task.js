@@ -15,5 +15,3 @@ cookie.onclick = () => {
         date1 === 0 ? time.textContent = 0 : time.textContent = (1000 / (date2 - date1)).toFixed(2);
     }
 }
-
-
