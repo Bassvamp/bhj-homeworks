@@ -1,32 +1,38 @@
 const product = document.querySelectorAll(".product");
-const productValue = document.querySelectorAll(".product__quantity-value");
 const cartProducts = document.querySelector(".cart__products");
-const productImage = document.querySelectorAll(".product__image");
 
 product.forEach((item) =>
   item.addEventListener("click", (event) => {
-    const index = item.getAttribute("data-id") - 1;
-    if (
-      productValue[index].textContent > 1 &&
-      event.target.classList.contains("product__quantity-control_dec")
-    ) {
-      productValue[index].textContent--;
-    }
+    const id = event.target.closest(".product");
+    const quantityValue = id.querySelector(".product__quantity-value");
+
     if (event.target.classList.contains("product__quantity-control_inc")) {
-      productValue[index].textContent++;
+      quantityValue.textContent++;
+    }
+    if (
+      event.target.classList.contains("product__quantity-control_dec") &&
+      quantityValue.textContent > 1
+    ) {
+      quantityValue.textContent--;
     }
 
     if (event.target.classList.contains("product__add")) {
-      const cart = document.querySelector(`.cart__product[data-id = "${index}"]`);
-      const add = `<div class="cart__product" data-id="${index}">
-                   <img class="cart__product-image" src="${productImage[index].src}">
-                   <div class="cart__product-count">${productValue[index].textContent}</div>
+      const cart = document.querySelector(`.cart__product[data-id = "${id.dataset.id}"]`);
+      const add = `<div class="cart__product" data-id="${id.dataset.id}">
+                  <img class="cart__product-image" src="${id.querySelector(".product__image").src}">
+                   <div class="cart__product-count">${quantityValue.textContent}</div>
                    </div>`;
-      const cartProductCount = document.querySelectorAll(".cart__product-count");
-      if (cart == null) {
+      if (cart === null) {
         cartProducts.insertAdjacentHTML("beforeend", add);
       } else {
-        cartProductCount[index].textContent = Number(cartProductCount[index].textContent) + Number(productValue[index].textContent);
+        cartProducts
+          .querySelector(`.cart__product[data-id = "${id.dataset.id}"]`)
+          .querySelector(".cart__product-count").textContent =
+          Number(
+            cartProducts
+              .querySelector(`.cart__product[data-id = "${id.dataset.id}"]`)
+              .querySelector(".cart__product-count").textContent
+          ) + Number(quantityValue.textContent);
       }
     }
   })
