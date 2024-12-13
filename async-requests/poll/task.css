@@ -9,3 +9,31 @@ body {
 .poll__title {
   margin-bottom: 20px;
 }
+
+.poll__answer {
+  display: block;
+  border: 1px solid black;
+  color: black;
+  background-color: #fff;
+  margin-inline: 10px;
+}
+
+.poll__answer:hover {
+  color: #fff;
+}
+
+.item {
+  display: flex;
+}
+
+.item__votes {
+  margin-right: 5px;
+}
+
+.poll__answers {
+  display: none;
+}
+
+.poll__answers_active {
+  display: flex;
+}
