@@ -33,13 +33,13 @@ form.classList.add("signin_active");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-
-  if (e.submitter.id === "signin__btn") {
-    logIn();
-  }
   if (e.submitter.id === "signout__btn") {
     localStorage.clear();
     location.reload();
+  } else if (form.login.value !== "" && form.password.value !== "") {
+    logIn();
+  } else {
+    alert("Введите логин и пароль");
   }
 });
 
