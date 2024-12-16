@@ -10,8 +10,6 @@ function logIn() {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log(json);
-
       if (json.success === true) {
         const id = json.user_id;
         welcome.classList.add("welcome_active");
@@ -27,23 +25,22 @@ function logIn() {
 }
 
 
-if(localStorage.getItem('id')) {
-    welcome.classList.add('welcome_active');
-    userId.textContent = localStorage.getItem('id');
+if (localStorage.getItem("id")) {
+  welcome.classList.add("welcome_active");
+  userId.textContent = localStorage.getItem("id");
 }
-form.classList.add('signin_active')
+form.classList.add("signin_active");
 
-form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        console.log(e.submitter.id)
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-        if(e.submitter.id === "signin__btn") {
-        logIn ();
-        }
-        if(e.submitter.id === "signout__btn") {
-        localStorage.clear();
-        location.reload();
-        }
-    });
+  if (e.submitter.id === "signin__btn") {
+    logIn();
+  }
+  if (e.submitter.id === "signout__btn") {
+    localStorage.clear();
+    location.reload();
+  }
+});
 
 
