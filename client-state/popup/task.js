@@ -1,8 +1,8 @@
 const modalClose = document.querySelector('.modal__close');
 const modal = document.getElementById('subscribe-modal');
 const cookie = getCookie();
-
-if(!('modal.classList.remove("modal_active")' === cookie.modalActive)) {
+console.log(cookie.modalActive)
+if(cookie.modalActive !== 'false') {
 modal.classList.add('modal_active');
 }
 
@@ -16,5 +16,6 @@ function getCookie() {
 
 modalClose.addEventListener('click', () => {
     modalActive = modal.classList.remove('modal_active');
-    document.cookie = 'modalActive=modal.classList.remove("modal_active")';
+    document.cookie = 'modalActive=false';
+    console.log(document.cookie)
 })
